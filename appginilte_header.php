@@ -14,6 +14,8 @@
   <link rel="stylesheet" href="appginilte/plugins/fontawesome-free/css/all.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="appginilte/dist/css/adminlte.min.css">
+  <!-- Custom AppGini UserBar CSS -->
+  <link rel="stylesheet" href="appginilte/dist/css/custom-appgini-userbar.css">
   <style>
     .responsive-iframe {
       width: 100%;
@@ -41,53 +43,6 @@
       <!-- Right navbar links -->
       <ul class="navbar-nav ml-auto">
 
-        <!-- UserMenu Dropdown: Contains- Admin area, profile, csv import and sign out menus -->
-        <li class="nav-item dropdown">
-          <a class="nav-link" data-toggle="dropdown" href="#">
-            <i class="far fa-user fa-1x"></i>
-          </a>
-          <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-            <span class="dropdown-item dropdown-header"><?php echo APP_TITLE . ' | ' . $username; ?></span>
-            <div class="dropdown-divider"></div>
-            <?php
-            $userprofileLink = "appginilte_view.php?page=membership_profile.php?Embedded=true";
-            if ($group == "Admins") {
-              # code...
-              $adminareaLink = PREPEND_PATH . "admin/pageHome.php";
-              #display admin area button/link below here
-              echo ' <a href="' . $adminareaLink . '" class="dropdown-item">
-            <i class="fas fa-lock mr-2"></i> Admin Area
-            <span class="float-right text-muted text-sm fa fa-arrow-right"></span>
-          </a>
-          <div class="dropdown-divider"></div>';
-              echo ' <a href="appginilte_settings.php" class="dropdown-item">
-            <i class="fas fa-cog mr-2"></i> AppginiLTE Settings
-            <span class="float-right text-muted text-sm fa fa-arrow-right"></span>
-          </a>
-          <div class="dropdown-divider"></div>';
-            }
-            echo ' <a href="' . $userprofileLink . '" class="dropdown-item">
-          <i class="fas fa-user mr-2"></i> Profile
-          <span class="float-right text-muted text-sm fa fa-arrow-right"></span>
-        </a>
-        <div class="dropdown-divider"></div>';
-            if (userCanImport()) {
-              $csvlink = "appginilte_view.php?page=import-csv.php?Embedded=true";
-              echo ' <a href="' . $csvlink . '" class="dropdown-item">
-          <i class="fas fa-file mr-2"></i> Import CSV
-          <span class="float-right text-muted text-sm fa fa-arrow-right"></span>
-        </a>
-        <div class="dropdown-divider"></div>';
-            }
-            ?>
-            <div class="dropdown-divider"></div>
-            <a href="index.php?signOut=1" class="dropdown-item dropdown-footer"> <svg id="icon-logout" xmlns="http://www.w3.org/2000/svg" class="text-dark" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
-                <polyline points="16 17 21 12 16 7"></polyline>
-                <line x1="21" y1="12" x2="9" y2="12"></line>
-              </svg> Sign Out</a>
-          </div>
-        </li>
         <li class="nav-item">
           <a class="nav-link" data-widget="fullscreen" href="#" role="button">
             <i class="fas fa-expand-arrows-alt"></i>

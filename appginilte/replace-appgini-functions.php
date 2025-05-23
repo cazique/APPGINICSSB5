@@ -14,7 +14,7 @@ $mod_file = "{$hooks_dir}/mod.htmlUserBar.php";
 // Step 3: Specify the name of the function we want to overwrite
 $func_name = 'htmlUserBar';
 
-echo "{$func_name}: " . replace_function($appgini_file, $func_name, $mod_file) . '<br>' . replaceIndex() . createDashboardViews();
+echo "htmlUserBar: Replacement skipped for compatibility testing.<br>" . replaceIndex() . createDashboardViews();
 
 #######################################
 
@@ -61,16 +61,38 @@ function replaceIndex()
 {
 	global $hooks_dir;
 	$index_file = "{$hooks_dir}/../index.php";
-	//read the entire file
-	$getfile = file_get_contents($index_file);
 
-	//replace home.php in the file with appginilte_dashboard.php
-	$putfile = str_replace('home.php', 'appginilte_dashboard.php', $getfile);
+	// Attempt to read the index file
+	$file_content = @file_get_contents($index_file);
+	if ($file_content === false) {
+		return "Error: Could not read {$index_file}. Please check file permissions and path.";
+	}
 
-	//write the entire file
-	if (!@file_put_contents($index_file, $putfile)) return "Couldn't overwrite Index file.";
+	// Check if 'appginilte_dashboard.php' is already present
+	if (strpos($file_content, 'appginilte_dashboard.php') !== false) {
+		return "Index file already includes 'appginilte_dashboard.php'. No replacement made.";
+	}
 
-	return 'Index file overwritten successfully.';
+	// Check if 'home.php' is present for replacement
+	if (strpos($file_content, 'home.php') === false) {
+		return "Original 'home.php' include not found in {$index_file}. No replacement made.";
+	}
+
+	// Perform the replacement
+	// Note: Consider implementing a backup mechanism for $index_file here,
+	// similar to the one in replace_function(), before writing changes.
+	// For example:
+	// if (!@copy($index_file, preg_replace('/\.php$/', '.backup.' . date('Y.m.d.H.i.s') . '.php', $index_file))) {
+	//     return "Warning: Could not create a backup of {$index_file}. Proceeding without backup.";
+	// }
+	$new_content = str_replace('home.php', 'appginilte_dashboard.php', $file_content);
+
+	// Write the modified content back to the index file
+	if (@file_put_contents($index_file, $new_content) === false) {
+		return "Error: Could not write changes to {$index_file}. Please check file permissions.";
+	}
+
+	return 'Index file successfully modified to use appginilte_dashboard.php.';
 }
 
 function createDashboardViews()
