@@ -2,6 +2,16 @@
 include 'groups_config_lte.php';
 include 'tables_config_lte.php';
 
+// Add AppginiLTE Settings link for Admin users
+if (getMemberInfo()['group'] == 'Admins') {
+    echo '<li class="nav-item">';
+    echo '  <a href="appginilte_settings.php" class="nav-link">';
+    echo '    <i class="nav-icon fas fa-cogs"></i>';
+    echo '    <p>AppginiLTE Settings</p>';
+    echo '  </a>';
+    echo '</li>';
+}
+
 $groups = get_table_groups();
 foreach ($groups as $grp => $tables) {
   # code...

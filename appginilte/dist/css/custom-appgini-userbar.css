@@ -1,0 +1,120 @@
+/* Custom CSS for AppGini htmlUserBar to match AdminLTE theme */
+
+/* 
+  NOTE: This is a conceptual outline. 
+  Actual selectors will depend on the HTML structure of AppGini's htmlUserBar.
+  These styles are intended to be applied from the parent page to the iframe content,
+  or directly within the iframe if AppGini allows custom CSS for the user bar.
+*/
+
+/* 1. Overall Container Styling */
+/* Assuming a main container div or nav element */
+/* .appgini-userbar-container (replace with actual class/ID) */
+.appgini-userbar-container {
+    background-color: #343a40; /* AdminLTE dark sidebar color, or #f8f9fa for light navbar */
+    color: #c2c7d0; /* AdminLTE light text color for dark backgrounds */
+    padding: 0.5rem 1rem; /* Adjust as needed */
+    display: flex; /* For layout if needed */
+    align-items: center; /* For vertical alignment */
+    font-family: 'Source Sans Pro', sans-serif; /* Match AdminLTE font */
+}
+
+/* 2. Link Styling */
+/* Assuming links are anchor tags, possibly within list items */
+/* .appgini-userbar-container a */
+.appgini-userbar-container a,
+.appgini-userbar-container a:link,
+.appgini-userbar-container a:visited {
+    color: #c2c7d0; /* AdminLTE light text */
+    text-decoration: none;
+    padding: 0.5rem 0.75rem; /* Adjust as needed */
+    display: block; /* Or inline-block */
+}
+
+/* .appgini-userbar-container a:hover,
+   .appgini-userbar-container a:focus */
+.appgini-userbar-container a:hover,
+.appgini-userbar-container a:focus {
+    color: #ffffff; /* Brighter text on hover */
+    background-color: #495057; /* Slightly darker background on hover */
+}
+
+/* Styling for list items if links are in a <ul> */
+/* .appgini-userbar-container ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex; 
+} */
+
+/* .appgini-userbar-container li {
+    margin-left: 0.5rem; 
+} */
+
+/* 3. Dropdown Menu Styling */
+/* Assuming dropdowns are triggered by a link/button and use <ul> for items */
+/* .appgini-userbar-dropdown-menu */
+.appgini-userbar-dropdown-menu {
+    background-color: #343a40; /* Match container or AdminLTE dropdown background */
+    border: 1px solid #495057; /* AdminLTE dropdown border */
+    border-radius: 0.25rem; /* AdminLTE border radius */
+    box-shadow: 0 0.5rem 1rem rgba(0,0,0,.175); /* AdminLTE shadow */
+}
+
+/* .appgini-userbar-dropdown-menu a (or .dropdown-item) */
+.appgini-userbar-dropdown-menu a {
+    color: #c2c7d0;
+    padding: 0.5rem 1rem; /* AdminLTE dropdown item padding */
+    display: block;
+    white-space: nowrap;
+}
+
+/* .appgini-userbar-dropdown-menu a:hover */
+.appgini-userbar-dropdown-menu a:hover {
+    background-color: #495057;
+    color: #ffffff;
+}
+
+/* Active/current item styling (if applicable) */
+/* .appgini-userbar-container a.active,
+   .appgini-userbar-dropdown-menu a.active {
+    color: #ffffff;
+    background-color: #007bff; /* AdminLTE primary color 
+} */
+
+/* 4. Integration with Font Awesome icons */
+/* If AppGini's user bar uses <i> or <span> tags for icons */
+/* .appgini-userbar-container [class^="fa-"], .appgini-userbar-container [class*=" fa-"] */
+.appgini-userbar-container .fa,
+.appgini-userbar-container .fas,
+.appgini-userbar-container .far,
+.appgini-userbar-container .fab { /* Adjust selectors based on actual Font Awesome usage */
+    margin-right: 0.5rem; /* Space between icon and text */
+    color: inherit; /* Icons inherit color from parent link/text */
+}
+
+/* Specific icon styling if needed (e.g., user icon) */
+/* .appgini-userbar-user-icon {
+    font-size: 1.2em; 
+} */
+
+/* 5. General Text & Typography */
+/* Ensure text within the userbar matches AdminLTE's typography */
+.appgini-userbar-container, 
+.appgini-userbar-container p, 
+.appgini-userbar-container span {
+    font-size: 1rem; /* AdminLTE base font size */
+    font-weight: 400; /* AdminLTE normal font weight */
+}
+
+/* Style for username display, if it's a distinct element */
+/* .appgini-userbar-username {
+    font-weight: 600; /* AdminLTE bolder font for usernames 
+    margin-right: 0.5rem;
+} */
+
+/* Separators (if any, e.g., | between links) */
+/* .appgini-userbar-separator {
+    color: #6c757d; /* Muted color for separators 
+    margin: 0 0.5rem;
+} */
