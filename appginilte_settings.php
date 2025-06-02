@@ -19,7 +19,7 @@ if ($group !== "Admins") {
                     <h1><?php echo APP_TITLE; ?></h1>
                 </div>
                 <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
+                    <ol class="breadcrumb float-sm-end">
                         <li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
                         <li class="breadcrumb-item active">Settings</li>
                     </ol>
@@ -46,10 +46,10 @@ if ($group !== "Admins") {
                         <p>Dashboard developed using <a href="https://adminlte.io/themes/v3/" target="_blank">AdminLTE Bootstrap Admin Dashboard Template</a></p>
                         <ul class="nav nav-tabs" id="custom-content-below-tab" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link active" id="custom-content-below-home-tab" data-toggle="pill" href="#custom-content-below-home" role="tab" aria-controls="custom-content-below-home" aria-selected="true">Table Groups Icons</a>
+                                <a class="nav-link active" id="custom-content-below-home-tab" data-bs-toggle="pill" href="#custom-content-below-home" role="tab" aria-controls="custom-content-below-home" aria-selected="true">Table Groups Icons</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="custom-content-below-profile-tab" data-toggle="pill" href="#custom-content-below-profile" role="tab" aria-controls="custom-content-below-profile" aria-selected="false">Table Cards/Menus</a>
+                                <a class="nav-link" id="custom-content-below-profile-tab" data-bs-toggle="pill" href="#custom-content-below-profile" role="tab" aria-controls="custom-content-below-profile" aria-selected="false">Table Cards/Menus</a>
                             </li>
                         </ul>
                         <div class="tab-content" id="custom-content-below-tabContent">
@@ -65,8 +65,14 @@ if ($group !== "Admins") {
                                 <form action="" method="POST">
                                     <?php
                                     $groups = get_table_groups();
-                                    $cjson = file_get_contents('appginilte/groups_config.json', true);
-                                    $cjson = json_decode($cjson, true);
+                                    $cjson_content = @file_get_contents('appginilte/groups_config.json', true);
+                                    $cjson = []; // Initialize as empty array
+                                    if ($cjson_content !== false) {
+                                        $decoded_cjson = json_decode($cjson_content, true);
+                                        if (json_last_error() === JSON_ERROR_NONE && is_array($decoded_cjson)) {
+                                            $cjson = $decoded_cjson;
+                                        }
+                                    }
                                     foreach ($groups as $grp => $tables) {
                                         if ($grp !== "None") {
                                             $gn = str_replace(" ", "_", $grp);
@@ -98,7 +104,6 @@ if ($group !== "Admins") {
                                         </select>
                                         </div>
                                         </div><hr>
-                                        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
                                         <script type="text/javascript">
                                         var ' . $gn . '_hpd = document.getElementById("' . $gn . '_hpd");
                                         var ' . $gn . '_cclabel = document.getElementById("' . $gn . '_cclabel");
@@ -106,10 +111,10 @@ if ($group !== "Admins") {
                                         var selectedDisplay = ' . $gn . '_hpd.options[' . $gn . '_hpd.selectedIndex].value; 
                                         if(selectedDisplay==="default" ||selectedDisplay==="notgrouped"){' . $gn . '_cclabel.style.display = "none";' . $gn . '_cc.style.display = "none";}
                                         if(selectedDisplay==="collapsible"){' . $gn . '_cclabel.style.display = "block";' . $gn . '_cc.style.display = "block";}
-                                        $("#' . $gn . '_hpd").change(function(){
-                                            var TheselectedDisplay=$("#' . $gn . '_hpd").val();
+                                        document.getElementById("' . $gn . '_hpd").addEventListener("change", function(){
+                                            var TheselectedDisplay = this.value;
                                             if(TheselectedDisplay==="default" || TheselectedDisplay==="notgrouped"){' . $gn . '_cclabel.style.display = "none";' . $gn . '_cc.style.display = "none";}
-                                        if(TheselectedDisplay==="collapsible"){' . $gn . '_cclabel.style.display = "block";' . $gn . '_cc.style.display = "block";}
+                                            if(TheselectedDisplay==="collapsible"){' . $gn . '_cclabel.style.display = "block";' . $gn . '_cc.style.display = "block";}
                                           });
                                         </script>
                                         ';
@@ -134,8 +139,14 @@ if ($group !== "Admins") {
                                 <!-- explanation -->
                                 <form action="" method="POST">
                                     <?php
-                                    $tjson = file_get_contents('appginilte/tables_config.json', true);
-                                    $tjson = json_decode($tjson, true);
+                                    $tjson_content = @file_get_contents('appginilte/tables_config.json', true);
+                                    $tjson = []; // Initialize as empty array
+                                    if ($tjson_content !== false) {
+                                        $decoded_tjson = json_decode($tjson_content, true);
+                                        if (json_last_error() === JSON_ERROR_NONE && is_array($decoded_tjson)) {
+                                            $tjson = $decoded_tjson;
+                                        }
+                                    }
                                     foreach ($groups as $grp => $tables) {
                                         foreach ($tables as $tn) {
                                             $json = json_encode(get_tables_info(true));
@@ -188,10 +199,10 @@ if ($group !== "Admins") {
                                         var selectedIcon = ' . $jtt . '_icon.options[' . $jtt . '_icon.selectedIndex].value; 
                                         if(selectedIcon==="default"){' . $jtt . '_fa.style.display = "none";' . $jtt . '_fafa.style.display = "none";}
                                         if(selectedIcon==="fa"){' . $jtt . '_fa.style.display = "block";' . $jtt . '_fafa.style.display = "block";}
-                                        $("#' . $jtt . '_icon").change(function(){
-                                            var TheselectedIcon=$("#' . $jtt . '_icon").val();
+                                        document.getElementById("' . $jtt . '_icon").addEventListener("change", function(){
+                                            var TheselectedIcon = this.value;
                                             if(TheselectedIcon==="default"){' . $jtt . '_fa.style.display = "none";' . $jtt . '_fafa.style.display = "none";}
-                                        if(TheselectedIcon==="fa"){' . $jtt . '_fa.style.display = "block";' . $jtt . '_fafa.style.display = "block";}
+                                            if(TheselectedIcon==="fa"){' . $jtt . '_fa.style.display = "block";' . $jtt . '_fafa.style.display = "block";}
                                           });
                                         </script>
                                         ';

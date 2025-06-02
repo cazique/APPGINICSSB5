@@ -1,5 +1,5 @@
 <footer class="main-footer">
-    <div class="float-right d-none d-sm-block">
+    <div class="float-end d-none d-sm-block">
      <!-- anything you want on the right side of the footer place it here -->
     </div>
     <strong>Copyright &copy; <?php echo date('Y'); ?> <a href="#0"><?php echo APP_TITLE; ?></a>.</strong> All rights reserved.
@@ -15,10 +15,10 @@
 
 <!-- jQuery -->
 <script src="appginilte/plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
-<script src="appginilte/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- Bootstrap 5 Bundle (includes Popper) -->
+<script src="appginilte/assets/js/bootstrap.bundle.min.js"></script>
 <!-- ChartJS -->
-<script src="appginilte/plugins/chart.js/Chart.min.js"></script>
+<script src="appginilte/assets/js/chart.js/Chart.min.js"></script>
 <!-- AdminLTE App -->
 <script src="appginilte/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->

@@ -20,7 +20,7 @@ if ($group !== "Admins") {
                     <h1><?php echo APP_TITLE; ?></h1>
                 </div>
                 <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
+                    <ol class="breadcrumb float-sm-end">
                         <li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
                         <li class="breadcrumb-item active">INSTALL APPGINI LTE</li>
                     </ol>
@@ -43,7 +43,7 @@ if ($group !== "Admins") {
                     </div>
                     <div class="card-body">
                     <div class="alert alert-success alert-dismissible">
-                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-hidden="true">×</button>
                   <h5><i class="icon fas fa-check"></i> Installation Success!</h5>
                   <?php 
                   include 'appginilte/replace-appgini-functions.php';

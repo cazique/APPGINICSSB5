@@ -11,16 +11,13 @@
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="appginilte/plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="appginilte/assets/fontawesome-free/css/all.min.css">
+  <!-- Bootstrap 5 CSS -->
+  <link rel="stylesheet" href="appginilte/assets/css/bootstrap.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="appginilte/dist/css/adminlte.min.css">
-  <style>
-    .responsive-iframe {
-      width: 100%;
-      display: block;
-      border: none;
-    }
-  </style>
+  <!-- Custom Theme Styles -->
+  <link rel="stylesheet" href="appginilte/assets/css/custom.css">
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -39,14 +36,14 @@
       </ul>
 
       <!-- Right navbar links -->
-      <ul class="navbar-nav ml-auto">
+      <ul class="navbar-nav ms-auto">
 
         <!-- UserMenu Dropdown: Contains- Admin area, profile, csv import and sign out menus -->
         <li class="nav-item dropdown">
-          <a class="nav-link" data-toggle="dropdown" href="#">
+          <a class="nav-link" data-bs-toggle="dropdown" href="#">
             <i class="far fa-user fa-1x"></i>
           </a>
-          <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+          <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
             <span class="dropdown-item dropdown-header"><?php echo APP_TITLE . ' | ' . $username; ?></span>
             <div class="dropdown-divider"></div>
             <?php
@@ -56,26 +53,26 @@
               $adminareaLink = PREPEND_PATH . "admin/pageHome.php";
               #display admin area button/link below here
               echo ' <a href="' . $adminareaLink . '" class="dropdown-item">
-            <i class="fas fa-lock mr-2"></i> Admin Area
-            <span class="float-right text-muted text-sm fa fa-arrow-right"></span>
+            <i class="fas fa-lock me-2"></i> Admin Area
+            <span class="float-end text-muted text-sm fa fa-arrow-right"></span>
           </a>
           <div class="dropdown-divider"></div>';
               echo ' <a href="appginilte_settings.php" class="dropdown-item">
-            <i class="fas fa-cog mr-2"></i> AppginiLTE Settings
-            <span class="float-right text-muted text-sm fa fa-arrow-right"></span>
+            <i class="fas fa-cog me-2"></i> AppginiLTE Settings
+            <span class="float-end text-muted text-sm fa fa-arrow-right"></span>
           </a>
           <div class="dropdown-divider"></div>';
             }
             echo ' <a href="' . $userprofileLink . '" class="dropdown-item">
-          <i class="fas fa-user mr-2"></i> Profile
-          <span class="float-right text-muted text-sm fa fa-arrow-right"></span>
+          <i class="fas fa-user me-2"></i> Profile
+          <span class="float-end text-muted text-sm fa fa-arrow-right"></span>
         </a>
         <div class="dropdown-divider"></div>';
             if (userCanImport()) {
               $csvlink = "appginilte_view.php?page=import-csv.php?Embedded=true";
               echo ' <a href="' . $csvlink . '" class="dropdown-item">
-          <i class="fas fa-file mr-2"></i> Import CSV
-          <span class="float-right text-muted text-sm fa fa-arrow-right"></span>
+          <i class="fas fa-file me-2"></i> Import CSV
+          <span class="float-end text-muted text-sm fa fa-arrow-right"></span>
         </a>
         <div class="dropdown-divider"></div>';
             }

@@ -26,7 +26,7 @@ if (strpos($page_title, "_view")) {
                     <h1><?php echo APP_TITLE; ?></h1>
                 </div>
                 <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
+                    <ol class="breadcrumb float-sm-end">
                         <li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
                         <li class="breadcrumb-item active"><?php echo ucwords(str_replace("_", " ", $page_title)); ?></li>
                     </ol>
