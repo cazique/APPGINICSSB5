@@ -1,0 +1,47 @@
+/* Custom styles for AppginiLTE theme */
+
+/* Responsive iframe for embedded AppGini pages */
+.responsive-iframe {
+  width: 100%;
+  display: block;
+  border: none;
+  min-height: 800px; /* Default height, will be adjusted by JS */
+}
+
+/* Compatibility for AppGini DML form-group spacing */
+.form-group {
+    margin-bottom: 1rem; /* Default Bootstrap 4 form-group margin */
+}
+
+/* Compatibility for AppGini DML btn-default */
+.btn-default {
+    color: #212529;
+    background-color: #f8f9fa;
+    border-color: #ced4da;
+}
+
+.btn-default:hover {
+    color: #212529;
+    background-color: #e2e6ea;
+    border-color: #dae0e5;
+}
+
+.btn-default:focus, .btn-default.focus {
+  color: #212529;
+  background-color: #e2e6ea;
+  border-color: #dae0e5;
+  box-shadow: 0 0 0 0.2rem rgba(211, 212, 213, 0.5);
+}
+
+.btn-default:active, .btn-default.active,
+.show > .btn-default.dropdown-toggle {
+  color: #212529;
+  background-color: #dae0e5;
+  border-color: #d3d9df;
+}
+
+.btn-default.disabled, .btn-default:disabled {
+  color: #6c757d;
+  background-color: #f8f9fa;
+  border-color: #ced4da;
+}

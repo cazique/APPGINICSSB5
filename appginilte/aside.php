@@ -71,24 +71,40 @@ foreach ($groups as $grp => $tables) {
 if (is_array($navLinks)) {
   $memberInfo = getMemberInfo();
   $links_added = [];
+  $menu = []; // Initialize $menu as an array
   foreach ($navLinks as $link) {
     if (!isset($link['url']) || !isset($link['title'])) continue;
     if (getLoggedAdmin() !== false || @in_array($memberInfo['group'], $link['groups']) || @in_array('*', $link['groups'])) {
       $menu_index = intval($link['table_group']);
-      if (!$links_added[$menu_index]) $menu[$menu_index] .= '<li class="divider"></li>';
+
+      // Initialize $menu[$menu_index] if not set
+      if (!isset($menu[$menu_index])) {
+        $menu[$menu_index] = '';
+      }
+      
+      if (empty($links_added[$menu_index])) { // Use empty for checking if not set or falsy
+        $menu[$menu_index] .= '<li class="divider"></li>';
+      }
 
       /* add prepend_path to custom links if they aren't absolute links */
       if (!preg_match('/^(http|\/\/)/i', $link['url'])) $link['url'] = $prepend_path . $link['url'];
       if (!preg_match('/^(http|\/\/)/i', $link['icon']) && $link['icon']) $link['icon'] = $prepend_path . $link['icon'];
 
       $menu[$menu_index] .= "<li  class=\"nav-item\"><a href=\"{$link['url']}\" class=\"nav-link\"><img src=\"" . ($link['icon'] ? $link['icon'] : "{$prepend_path}blank.gif") . "\" height=\"32\"> <p>{$link['title']}</p></a></li>";
+      
+      // Initialize $links_added[$menu_index] if not set before incrementing
+      if (!isset($links_added[$menu_index])) {
+        $links_added[$menu_index] = 0;
+      }
       $links_added[$menu_index]++;
     }
   }
   $menu_wrapper = '';
-  for ($i = 0; $i < count($menu); $i++) {
+  // Ensure $menu is iterated correctly even if sparse
+  ksort($menu); // Sort by key to maintain order if groups are not contiguous
+  foreach ($menu as $menu_item) {
     $menu_wrapper .= <<<EOT
-				{$menu[$i]}
+				{$menu_item}
 EOT;
   }
 
